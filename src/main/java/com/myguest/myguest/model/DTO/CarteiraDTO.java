@@ -14,6 +14,6 @@ import java.math.BigDecimal;
 public class CarteiraDTO implements Serializable {
     private String descricao;
     private BigDecimal valor;
-    private String categoria;
+    private Long categoria;
     private String tipo;
 }

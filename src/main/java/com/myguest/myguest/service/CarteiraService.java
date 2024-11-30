@@ -42,13 +42,13 @@ public class CarteiraService {
         Carteira carteira = carteiraRepository.findById(carteiraId)
                 .orElseThrow(() -> new RuntimeException("Carteira não encontrada!"));
 
-        if (dto.getCategoria() != null && !dto.getCategoria().isBlank()) {
-            Categorias cat = categoriasRepository.findByNomeCatAndUsuarioId(dto.getCategoria(), userId)
+        if (dto.getCategoria() != null && dto.getCategoria() != 0L) {
+            Categorias cat = categoriasRepository.findByIdCatAndUsuarioId(dto.getCategoria(), userId)
                     .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
             carteira.setCatCarteira(cat.getIdCat());
         }
 
-        if (dto.getDescricao() != null && !dto.getCategoria().isBlank())
+        if (dto.getDescricao() != null && !dto.getDescricao().isBlank())
             carteira.setDescricaoCarteira(dto.getDescricao());
 
         if (dto.getValor() != null && !dto.getValor().equals(BigDecimal.ZERO))
